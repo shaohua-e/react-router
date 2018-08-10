@@ -4,7 +4,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //创建html
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');//
 module.exports = {
     entry: './src/app.jsx',
     output: {
@@ -19,9 +19,9 @@ module.exports = {
                 test: /\.jsx$/,
                 exclude: /(node_modules)/,
                 use: {
-                    loader: 'babel-loader',
+                    loader: 'babel-loader',//通过babel-loader加载jsx
                     options: {
-                        presets: ['env', 'react'] //env:根据环境来打包，浏览器环境或node环境；
+                        presets: ['env', 'react'] //两个插件对jsx进行转化，env:根据环境来打包，浏览器环境或node环境；
                     }
                 }
             },
@@ -74,7 +74,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
-        //独立css文件
+        //独立css文件,css/[name].css表示生成文件的目录和名字
         new ExtractTextPlugin('css/[name].css'),
         //提出公共模块
         new webpack.optimize.CommonsChunkPlugin({
