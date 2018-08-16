@@ -8,9 +8,15 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');//
 module.exports = {
     entry: './src/app.jsx',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist'),//path.resolve是在__dirname(当前文件所在目录)目录下寻找dist
         publicPath: '/dist/',
         filename: 'js/app.js'
+    },
+    resolve: {//工具对象
+        alias: {//处理别名
+            page: path.resolve(__dirname, 'src/page'),
+            component: path.resolve(__dirname, 'src/component')
+        }
     },
     module: {
         rules: [
@@ -83,6 +89,9 @@ module.exports = {
         })
     ],
     devServer: {
-        port: 8081
+        port: 8081,
+        historyApiFallback:{//404的路径 会跳转到这个路径
+            index: '/dist/index.html'
+        }
     }
 }
