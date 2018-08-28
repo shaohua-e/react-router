@@ -15,7 +15,9 @@ module.exports = {
     resolve: {//工具对象
         alias: {//处理别名
             page: path.resolve(__dirname, 'src/page'),
-            component: path.resolve(__dirname, 'src/component')
+            component: path.resolve(__dirname, 'src/component'),
+            util: path.resolve(__dirname, 'src/util'),
+            service: path.resolve(__dirname, 'src/service'),
         }
     },
     module: {
@@ -92,6 +94,16 @@ module.exports = {
         port: 8081,
         historyApiFallback:{//404的路径 会跳转到这个路径
             index: '/dist/index.html'
+        },
+        proxy: {// 自动代理到后端的接口上
+            "/manage": {
+                target: 'http://admintest.happymmall.com',
+                changeOrigin: true
+            },
+            '/user/logout.do': {
+                target: 'http://admintest.happymmall.com',
+                changeOrigin: true
+            }
         }
     }
 }
